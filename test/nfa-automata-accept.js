@@ -39,6 +39,7 @@ module.exports = {
     },
 
     testDefinitionRespected: function (test) {
+        test.equal(accept(""), false);
         test.equal(accept("ab"), true);
         test.equal(accept("aba"), false);
         test.equal(accept("abc"), false);
