@@ -32,6 +32,7 @@ var definition = {
         SB: []
     }
 };
+```
 
 ## Create the NFA
 
