@@ -115,7 +115,7 @@ function validate(definition) {
             return "Invalid transition " + index + " for state '" + state + "'";
         }
 
-        if (!transition.on) {
+        if (!transition.on && typeof transition.on !== "string") {
             return "No character specified for transition " + index + " in state '" + state + "'";
         }
 

@@ -56,3 +56,44 @@ automaton.accept("abab");    // -> true
 ```
 
 The NFA will throw an error if anything but a string is passed to the `accept()` method.```
+
+## Empty transitions
+
+A feature of an NFA is the recognition of *empty transitions*. You can think of empty transitions as moving between states if nothing happens. This concept is very similar to the `*` operator in regular expressions. The regular expression `ab*c` can match an `a`, *zero or more* `b` and a `c`. You can write a NFA for this regular expression by mapping the transition from `a` to `c` as an empty transition, because if no `b` are in the input you can directly jump and recognize `c`.
+
+The NFA definition supports empty transitions. They are represented with an empty string (`""`) in the `to` field of a transition object.
+
+The following example is the definition for the NFA recognizing the language represented by the regular expression `ab*c`. Please note that this example is not the most efficient automaton to recognize the language represented by this regular expression (in fact, a DFA would suffice), it is only provided for illustration purpose.
+
+```javascript
+var automaton = nfa.create({
+    start: "START",
+    finals: ["S3"],
+    states: {
+        START: [
+            {on: "a", to: "S1"}
+        ],
+        S1: [
+            {on: "", to: "S2"},
+            {on: "", to: "S4"}
+        ],
+        S2: [
+            {on: "c", to: "S3"}
+        ],
+        S3: [
+        ],
+        S4: [
+            {on: "b", to: "S5"}
+        ],
+        S5: [
+            {on: "b", to: "S5"},
+            {on: "c", to: "S3"}
+        ]
+    }
+});
+
+automaton.accept("");       // -> false, the empty string is not recognized
+automaton.accept("ac");     // -> true
+automaton.accept("abc");    // -> true
+automaton.accept("abbc");   // -> true
+```
