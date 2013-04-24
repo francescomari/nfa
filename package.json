@@ -1,0 +1,9 @@
+{
+  "name": "nfa",
+  "version": "0.0.1",
+  "description": "Nondeterministic finite automaton",
+  "main": "nfa.js",
+  "repository": "https://github.com/francescomari/nfa.git",
+  "author": "Francesco Mari <mari.francesco@gmail.com>",
+  "license": "MIT"
+}
