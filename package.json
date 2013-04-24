@@ -3,6 +3,14 @@
   "version": "0.0.1",
   "description": "Nondeterministic finite automaton",
   "main": "nfa.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.4.3",
+    "grunt-contrib-nodeunit": "~0.1.2"
+  },
   "repository": "https://github.com/francescomari/nfa.git",
   "author": "Francesco Mari <mari.francesco@gmail.com>",
   "license": "MIT"
