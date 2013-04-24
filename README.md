@@ -32,4 +32,26 @@ var definition = {
         SB: []
     }
 };
+
+## Create the NFA
+
+The NFA is created by invoking the `create()` method of the `nfa` module. This method requires the definition of the NFA specified as a JavaScript object.
+
+```javascript
+var automaton = require("nfa").create(definition);
 ```
+Creating a NFA with a non-valid definition will throw an `Error` with a hopefully meaningful error message.
+
+## Use the NFA
+
+A NFA can only recognize if a string of characters is valid based on the definition it was built with. To recognize a string of characters use the `accept()` method.
+
+```javascript
+automaton.accept("");        // -> false, the empty string is not recognized
+automaton.accept("ab");      // -> true, the middle sequence of "a" and "b" can be empty
+automaton.accept("abc");     // -> false, "c" not recognized
+automaton.accept("aba");     // -> false, "SA" is not a final state
+automaton.accept("abab");    // -> true
+```
+
+The NFA will throw an error if anything but a string is passed to the `accept()` method.```
